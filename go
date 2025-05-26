@@ -7,6 +7,7 @@ from tkinter import messagebox
 # 처음값
 health = 5
 coins = 0
+score = 0
 countdown_time = 5
 
 print("게임 시작!")
@@ -24,7 +25,7 @@ while health > 0:
     
     # 카운트 다운
     for remaining in range(countdown_time, 0, -1):
-        print(f"남은 시간: {remaining}초", end='\r')
+        print("남은 시간: {remaining}초", end='\r')
         time.sleep(1)
         if health <= 0:
             break
@@ -38,12 +39,18 @@ while health > 0:
 
     if user_answer.strip() == answer:
         coins += 1
+        score += 1
         countdown_time = 5  # 정답시 카운트다운 다시
         print("정답! 코인 1개 획득!")
     else:
         health -= 1
-        print(f"틀렸어요! 체력 1 감소! (남은 체력: {health})")
+        score += 1
+        print("틀렸어요! 체력 1 감소! (남은 체력: {health})")
 
+#마지막에 푼 퀴즈수와 얻은 코인수
 print("\nGame Over")
-print(f"얻은 코인 개수: {coins}")
+print("얻은 코인 개수: {coins}")
+print("푼 퀴즈 개수: {score}")
+
+
 

@@ -1,40 +1,49 @@
+#창 에서 버튼 클릭
+import tkinter as tk
+from tkinter import messagebox
+
+
 #퀴즈
-#기본 체력,코인
+# 처음값
 health = 5
 coins = 0
+countdown_time = 5
 
-print("게임 시작")
+print("게임 시작!")
 
-quiz = [("한국의 수도는?")]
-answer = [("서울")}
+# 퀴즈 리스트 더 추가하기$$$$$$$$$
+quiz_list = [("한국의 수도는?", "서울"),
+             ("2 + 2는?", "4"),
+             ("가장 높은 산은?","에베레스트산"),
+             ("가장 큰 바다는?", "태평양")]
 
-#퀴즈 내는창
-for health > 0: 
-  print("\n문제:",quiz)
-  user_answer = input("정답: ")
+# 퀴즈 내기
+while health > 0:
+    import random
+    question, answer = random.choice(quiz_list)
+    
+    # 카운트 다운
+    for remaining in range(countdown_time, 0, -1):
+        print(f"남은 시간: {remaining}초", end='\r')
+        time.sleep(1)
+        if health <= 0:
+            break
+    print(' ' * 30, end='\r')  # 카운트다운 지우기
 
-#카운트 다운
- for remaining in range(countdown_time, 0, -1):
-            print(f"남은 시간: {remaining}초")
-            time.sleep(1)
-            if player.hp == 0:
-                break
-        print(' ' * 20, end='\r')#카운트 삭제  
-          
-#퀴즈 정답
-if user_answer == answer:
+    if health <= 0:
+        break
+
+    print(f"\n문제: {question}")
+    user_answer = input("정답: ")
+
+    if user_answer.strip() == answer:
         coins += 1
+        countdown_time = 5  # 정답시 카운트다운 다시
         print("정답! 코인 1개 획득!")
-    #퀴즈땡
-          else:
-          health -= 1
-          print(f"틀렸어요! 체력 1 감소! (남은 체력: {health})")
-if health == 0:#죽음
-  print("game over")
-  print("얻은 코인 갯수: {coins}")
-          #카운트 정답이면 초기화
-          if user_input.strip() == answer:
-            player.reward()
-            return = countdown_time
-        else:
-            player.penalty()
+    else:
+        health -= 1
+        print(f"틀렸어요! 체력 1 감소! (남은 체력: {health})")
+
+print("\nGame Over")
+print(f"얻은 코인 개수: {coins}")
+
